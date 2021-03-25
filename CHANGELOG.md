@@ -2,8 +2,10 @@
 
 All notable changes to the "mergeconf" extension will be documented in this file.
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
-
 ## [Unreleased]
 
-- Initial release
+- Merge multiple config files
+- Merge config file with other text configs
+- More conflict strategy options
+
+[unreleased]: https://github.com/aboqasem/vscode-mergeconf/
