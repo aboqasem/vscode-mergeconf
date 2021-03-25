@@ -23,11 +23,26 @@
   "contributes": {
     "commands": [
       {
-        "command": "mergeconf.merge",
+        "command": "mergeconf.mergeThis",
         "category": "MergeConf",
-        "title": "Merge config files"
+        "title": "MergeConf: Merge with other config"
       }
-    ]
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "mergeconf.mergeThis",
+          "when": "false"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "mergeconf.mergeThis",
+          "group": "mergeconf",
+          "when": "resourceLangId == json"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
