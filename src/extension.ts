@@ -14,7 +14,7 @@ export function activate(context: vscode.ExtensionContext) {
 
       let c1: ValidConf;
       let c2: ValidConf;
-      let mergedConf: ValidConf = null;
+      let mergedConf: ValidConf;
 
       try {
         c1 = JSON.parse(editorText);
@@ -78,8 +78,6 @@ export function activate(context: vscode.ExtensionContext) {
 
         for (const k2 in c2) {
           if (!Object.prototype.hasOwnProperty.call(c1, k2)) {
-            console.table({ has: true, c2, k2, c1 });
-
             mergedConf[k2] = c2[k2];
           }
         }
@@ -98,9 +96,9 @@ export function activate(context: vscode.ExtensionContext) {
         editBuilder.replace(fullRange, mergedText + eof);
       });
 
-      if (!areEditsSaved) return vscode.window.showErrorMessage('Merge was not saved', 'OK');
+      if (!areEditsSaved) return vscode.window.showErrorMessage('Merge failed', 'OK');
 
-      return vscode.window.showInformationMessage('Merge was saved', 'OK');
+      return vscode.window.showInformationMessage('Merged successfully', 'OK');
     }),
   );
 }
