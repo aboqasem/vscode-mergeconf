@@ -7,7 +7,7 @@
   },
   "publisher": "aboqasem",
   "repository": {
-    "url": "https://github.com/aboqasem/mergeconf"
+    "url": "https://github.com/aboqasem/vscode-mergeconf"
   },
   "version": "0.0.1",
   "engines": {

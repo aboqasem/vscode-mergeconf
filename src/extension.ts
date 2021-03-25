@@ -74,10 +74,15 @@ export function activate(context: vscode.ExtensionContext) {
       } else if (!(c1 instanceof Array) && c2 instanceof Array) {
         mergedConf = [c1, ...c2];
       } else if (!(c1 instanceof Array) && !(c2 instanceof Array)) {
-        mergedConf = { ...c2, ...c1 };
-      } else {
-        console.error('Something went wrong!');
-        console.table({ c1, t1: typeof c1, c2, t2: typeof c2 });
+        mergedConf = { ...c1 };
+
+        for (const k2 in c2) {
+          if (!Object.prototype.hasOwnProperty.call(c1, k2)) {
+            console.table({ has: true, c2, k2, c1 });
+
+            mergedConf[k2] = c2[k2];
+          }
+        }
       }
 
       const areEditsSaved = await activeEditor.edit((editBuilder) => {
