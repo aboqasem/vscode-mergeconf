@@ -2,6 +2,7 @@
   "name": "mergeconf",
   "displayName": "MergeConf",
   "description": "Merge configurations with ease.",
+  "icon": "images/logo.png",
   "author": {
     "name": "Mohammad Al Zouabi"
   },
