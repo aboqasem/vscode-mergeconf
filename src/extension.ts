@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { Json, ValidConf } from './types';
+import { ValidConf } from './types';
 
 export function activate(context: vscode.ExtensionContext) {
   console.log('MergeConf is now active!');
@@ -17,7 +17,7 @@ export function activate(context: vscode.ExtensionContext) {
       let mergedConf: ValidConf = null;
 
       try {
-        c1 = JSON.parse(editorText) as Json;
+        c1 = JSON.parse(editorText);
       } catch (e) {
         return vscode.window.showErrorMessage('Invalid config file', 'OK');
       }
@@ -91,9 +91,11 @@ export function activate(context: vscode.ExtensionContext) {
         const lastCharPos = activeEditor.document.lineAt(lastLineNumber).rangeIncludingLineBreak.end;
         const fullRange = new vscode.Range(firstCharPos, lastCharPos);
 
-        const finalText = JSON.stringify(mergedConf, null, activeEditor.options.tabSize || 4) + '\n';
+        const eof = activeEditor.document.eol === 1 ? '\n' : '\r\n';
+        const tabSize = activeEditor.options.tabSize || 4;
+        const mergedText = JSON.stringify(mergedConf, null, tabSize);
 
-        editBuilder.replace(fullRange, finalText);
+        editBuilder.replace(fullRange, mergedText + eof);
       });
 
       if (!areEditsSaved) return vscode.window.showErrorMessage('Merge was not saved', 'OK');
