@@ -1,4 +1,4 @@
-# MergeConf
+# Merge Configurations
 
 Merge configurations **(JSON for now)** with ease.
 

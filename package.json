@@ -1,6 +1,6 @@
 {
   "name": "mergeconf",
-  "displayName": "MergeConf",
+  "displayName": "Merge Configurations",
   "description": "Merge configurations with ease.",
   "icon": "images/logo.png",
   "author": {
@@ -25,8 +25,8 @@
     "commands": [
       {
         "command": "mergeconf.mergeThis",
-        "category": "MergeConf",
-        "title": "MergeConf: Merge with other config"
+        "category": "Merge Configurations",
+        "title": "Merge Configurations: with another config"
       }
     ],
     "menus": {

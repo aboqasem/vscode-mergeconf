@@ -1,7 +1,9 @@
-type JsonArray = Array<Json>;
+export type JsonValue = null | boolean | number | string;
 
-type JsonObject = { [name: string]: Json };
+export type JsonArray = Array<Json>;
 
-type Json = null | boolean | number | string | JsonArray | JsonObject;
+export type JsonObject = { [name: string]: Json };
+
+export type Json = JsonValue | JsonArray | JsonObject;
 
 export type ValidConf = Json;
