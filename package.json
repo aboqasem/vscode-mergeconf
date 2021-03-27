@@ -18,11 +18,17 @@
     "Other"
   ],
   "activationEvents": [
+    "onWebviewPanel:merge",
     "onStartupFinished"
   ],
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
+      {
+        "command": "mergeconf.merge",
+        "category": "Merge Configurations",
+        "title": "Merge configs"
+      },
       {
         "command": "mergeconf.mergeThis",
         "category": "Merge Configurations",
