@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import { html } from '../utils/utils';
 import { getNonce } from './getNonce';
 
 export default class MergePanel {
@@ -39,32 +40,37 @@ export default class MergePanel {
     const stylesTailwindUri = webview.asWebviewUri(vscode.Uri.joinPath(this.extensionUri, 'media/css', 'tailwind.css'));
     const nonce = getNonce();
 
-    return `<!DOCTYPE html>
-			<html lang="en">
-			<head>
-				<meta charset="UTF-8">
-				<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src ${webview.cspSource}; img-src ${webview.cspSource} https:; script-src 'nonce-${nonce}';">
-				<meta name="viewport" content="width=device-width, initial-scale=1.0">
-				<link href="${stylesResetUri}" rel="stylesheet">
-				<link href="${stylesMainUri}" rel="stylesheet">
-				<link href="${stylesTailwindUri}" rel="stylesheet">
-				<title>Merge Configurations</title>
-			</head>
-			<body>
-        <h1 id="greeting">Hello, World!</h1>
-        <div class="grid grid-cols-2 gap-4">
-          <textarea></textarea>
-          <textarea></textarea>
-        </div>
-				<script nonce="${nonce}" src="${scriptUri}"></script>
-			</body>
-			</html>`;
+    return html`<!DOCTYPE html>
+      <html lang="en">
+        <head>
+          <meta charset="UTF-8" />
+          <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'none'; style-src ${webview.cspSource}; img-src ${webview.cspSource} https:; script-src 'nonce-${nonce}';"
+          />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <link href="${stylesResetUri}" rel="stylesheet" />
+          <link href="${stylesMainUri}" rel="stylesheet" />
+          <link href="${stylesTailwindUri}" rel="stylesheet" />
+          <title>Merge Configurations</title>
+        </head>
+        <body>
+          <h1 id="greeting">Hello, World!</h1>
+          <div class="grid grid-cols-2 gap-4">
+            <textarea></textarea>
+            <textarea></textarea>
+          </div>
+          <script nonce="${nonce}" src="${scriptUri}"></script>
+        </body>
+      </html>`;
   }
 
   private update() {
     const webview = this.panel.webview;
 
     this.panel.title = 'Merge Configurations';
+    console.log(this.getHtmlForWebview(webview));
+
     this.panel.webview.html = this.getHtmlForWebview(webview);
   }
 
