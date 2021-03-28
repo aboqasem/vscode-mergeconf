@@ -36,6 +36,7 @@ export default class MergePanel {
     const scriptUri = webview.asWebviewUri(vscode.Uri.joinPath(this.extensionUri, 'media/js', 'main.js'));
     const stylesResetUri = webview.asWebviewUri(vscode.Uri.joinPath(this.extensionUri, 'media/css', 'reset.css'));
     const stylesMainUri = webview.asWebviewUri(vscode.Uri.joinPath(this.extensionUri, 'media/css', 'vscode.css'));
+    const stylesTailwindUri = webview.asWebviewUri(vscode.Uri.joinPath(this.extensionUri, 'media/css', 'tailwind.css'));
     const nonce = getNonce();
 
     return `<!DOCTYPE html>
@@ -46,10 +47,15 @@ export default class MergePanel {
 				<meta name="viewport" content="width=device-width, initial-scale=1.0">
 				<link href="${stylesResetUri}" rel="stylesheet">
 				<link href="${stylesMainUri}" rel="stylesheet">
+				<link href="${stylesTailwindUri}" rel="stylesheet">
 				<title>Merge Configurations</title>
 			</head>
 			<body>
         <h1 id="greeting">Hello, World!</h1>
+        <div class="grid grid-cols-2 gap-4">
+          <textarea></textarea>
+          <textarea></textarea>
+        </div>
 				<script nonce="${nonce}" src="${scriptUri}"></script>
 			</body>
 			</html>`;
