@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import { html } from '../utils/utils';
 import { getNonce } from './getNonce';
+import { Message } from './types';
 
 export default class MergePanel {
   private readonly panel: vscode.WebviewPanel;
@@ -69,6 +70,7 @@ export default class MergePanel {
             </div>
           </div>
           <div class="max-w-2xl mx-auto">
+            <button id="merge" class="mb-2">Merge Configurations</button>
             <label class="text-2xl" for="c">Merged Configuration:</label>
             <textarea id="c" rows="20"></textarea>
           </div>
@@ -104,9 +106,17 @@ export default class MergePanel {
     MergePanel.currentPanel = new MergePanel(panel, extensionUri);
   }
 
-  public static postMessage(message: { command: string; payload?: any }): Thenable<boolean> {
+  public static postMessage(message: Message): Thenable<boolean> {
     if (this.currentPanel) {
       return this.currentPanel.panel.webview.postMessage(message);
+    }
+    throw Error('Panel not instantiated.');
+  }
+
+  public static onDidReceiveMessage(listener: (message: Message) => any): void {
+    if (this.currentPanel) {
+      this.currentPanel.panel.webview.onDidReceiveMessage(listener, null, this.currentPanel.disposables);
+      return;
     }
     throw Error('Panel not instantiated.');
   }

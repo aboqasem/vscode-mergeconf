@@ -21,6 +21,9 @@ const c1PasteBtn = document.getElementById('c1Paste');
 /** @type {HTMLButtonElement} */
 const c2PasteBtn = document.getElementById('c2Paste');
 
+/** @type {HTMLButtonElement} */
+const mergeBtn = document.getElementById('merge');
+
 c1El.value = initialState?.c1Text ?? '';
 c2El.value = initialState?.c2Text ?? '';
 cEl.value = initialState?.cText ?? '';
@@ -47,6 +50,17 @@ c2PasteBtn.onclick = async () => {
   const text = await navigator.clipboard.readText();
   c2El.value = text;
   setState('c2Text', text);
+};
+
+mergeBtn.onclick = () => {
+  const state = vscode.getState();
+  vscode.postMessage({
+    command: 'merge',
+    payload: {
+      c1Text: state?.c1Text ?? '',
+      c2Text: state?.c2Text ?? '',
+    },
+  });
 };
 
 /*------------------------------ Message receiving ------------------------------*/

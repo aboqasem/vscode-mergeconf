@@ -18,4 +18,15 @@ export const merge = (context: vscode.ExtensionContext): any => {
   MergePanel.createOrShow(context.extensionUri);
 
   MergePanel.postMessage({ command: 'activeC1Text', payload: activeC1Text });
+
+  MergePanel.onDidReceiveMessage((message) => {
+    switch (message.command) {
+      case 'merge':
+        console.log(message);
+        return;
+
+      default:
+        return;
+    }
+  });
 };
