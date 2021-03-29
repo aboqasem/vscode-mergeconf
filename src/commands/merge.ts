@@ -53,7 +53,7 @@ export const merge = (context: vscode.ExtensionContext): any => {
 
         MergePanel.postMessage({ command: 'mergedConfText', payload: JSON.stringify(mergedConf, null, tabSize) });
 
-        return;
+        return vscode.window.showInformationMessage('Merged successfully', 'OK');
 
       default:
         return;
