@@ -18,7 +18,6 @@
     "Other"
   ],
   "activationEvents": [
-    "onWebviewPanel:merge",
     "onStartupFinished"
   ],
   "main": "./dist/extension.js",
