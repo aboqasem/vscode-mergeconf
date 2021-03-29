@@ -102,6 +102,13 @@ export default class MergePanel {
     MergePanel.currentPanel = new MergePanel(panel, extensionUri);
   }
 
+  public static postMessage(message: { command: string; payload?: any }): Thenable<boolean> {
+    if (this.currentPanel) {
+      return this.currentPanel.panel.webview.postMessage(message);
+    }
+    throw Error('Panel not instantiated.');
+  }
+
   public dispose() {
     MergePanel.currentPanel = undefined;
 

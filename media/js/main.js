@@ -36,7 +36,12 @@ cEl.onkeyup = (e) => {
 window.addEventListener('message', (e) => {
   /** @type Message */
   const message = e.data;
-  switch (message.message) {
+  switch (message.command) {
+    case 'activeC1Text':
+      c1El.value = message.payload;
+      setState('c1Text', message.payload);
+      break;
+
     default:
       break;
   }
