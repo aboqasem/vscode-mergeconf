@@ -60,10 +60,12 @@ export default class MergePanel {
             <div>
               <label class="text-2xl" for="c1">Configuration 1:</label>
               <textarea id="c1" class="font-mono" rows="20"></textarea>
+              <button id="c1Paste" class="mt-2">Paste Configuration 1</button>
             </div>
             <div>
               <label class="text-2xl" for="c2">Configuration 2:</label>
               <textarea id="c2" class="font-mono" rows="20"></textarea>
+              <button id="c2Paste" class="mt-2">Paste Configuration 2</button>
             </div>
           </div>
           <div class="max-w-2xl mx-auto">

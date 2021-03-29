@@ -15,6 +15,12 @@ const c2El = document.getElementById('c2');
 /** @type {HTMLTextAreaElement} */
 const cEl = document.getElementById('c');
 
+/** @type {HTMLButtonElement} */
+const c1PasteBtn = document.getElementById('c1Paste');
+
+/** @type {HTMLButtonElement} */
+const c2PasteBtn = document.getElementById('c2Paste');
+
 c1El.value = initialState?.c1Text ?? '';
 c2El.value = initialState?.c2Text ?? '';
 cEl.value = initialState?.cText ?? '';
@@ -29,6 +35,18 @@ c2El.onkeyup = (e) => {
 
 cEl.onkeyup = (e) => {
   setState('cText', e.target.value);
+};
+
+c1PasteBtn.onclick = async () => {
+  const text = await navigator.clipboard.readText();
+  c1El.value = text;
+  setState('c1Text', text);
+};
+
+c2PasteBtn.onclick = async () => {
+  const text = await navigator.clipboard.readText();
+  c2El.value = text;
+  setState('c2Text', text);
 };
 
 /*------------------------------ Message receiving ------------------------------*/
