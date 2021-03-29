@@ -55,10 +55,20 @@ export default class MergePanel {
           <title>Merge Configurations</title>
         </head>
         <body>
-          <h1 id="greeting">Hello, World!</h1>
-          <div class="grid grid-cols-2 gap-4">
-            <textarea></textarea>
-            <textarea></textarea>
+          <h1 class="text-center mb-6">Merge Configurations</h1>
+          <div class="grid grid-cols-2 gap-4 pb-5">
+            <div>
+              <label class="text-2xl" for="c1">Configuration 1:</label>
+              <textarea id="c1" class="font-mono" rows="20"></textarea>
+            </div>
+            <div>
+              <label class="text-2xl" for="c2">Configuration 2:</label>
+              <textarea id="c2" class="font-mono" rows="20"></textarea>
+            </div>
+          </div>
+          <div class="max-w-2xl mx-auto">
+            <label class="text-2xl" for="c">Merged Configuration:</label>
+            <textarea id="c" rows="20"></textarea>
           </div>
           <script nonce="${nonce}" src="${scriptUri}"></script>
         </body>
@@ -69,7 +79,6 @@ export default class MergePanel {
     const webview = this.panel.webview;
 
     this.panel.title = 'Merge Configurations';
-    console.log(this.getHtmlForWebview(webview));
 
     this.panel.webview.html = this.getHtmlForWebview(webview);
   }
