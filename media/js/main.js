@@ -74,6 +74,11 @@ window.addEventListener('message', (e) => {
       setState('c1Text', message.payload);
       break;
 
+    case 'mergedConfText':
+      cEl.value = message.payload;
+      setState('cText', message.payload);
+      break;
+
     default:
       break;
   }

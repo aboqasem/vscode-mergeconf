@@ -72,7 +72,7 @@ export default class MergePanel {
           <div class="max-w-2xl mx-auto">
             <button id="merge" class="mb-2">Merge Configurations</button>
             <label class="text-2xl" for="c">Merged Configuration:</label>
-            <textarea id="c" rows="20"></textarea>
+            <textarea id="c" class="font-mono" rows="20"></textarea>
           </div>
           <script nonce="${nonce}" src="${scriptUri}"></script>
         </body>
